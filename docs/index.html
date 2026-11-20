@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Motion Offense Playbook &amp; Practice Plan</title>
+<style>
+:root{--navy:#13254f;--red:#c62828;--gold:#e0a100;--ink:#1a1a1a;--muted:#5f6368;--bg:#f4f1ea;--card:#fff;--line:#e2dccf}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+header{padding:calc(env(safe-area-inset-top) + 14px) max(16px,env(safe-area-inset-right)) 8px max(16px,env(safe-area-inset-left));background:var(--navy);color:#fff}
+header h1{margin:0;font-size:20px;letter-spacing:.2px}
+header p{margin:2px 0 0;opacity:.75;font-size:14px}
+nav{position:sticky;top:0;z-index:10;background:var(--navy);display:flex;gap:6px;padding:6px max(10px,env(safe-area-inset-right)) 10px max(10px,env(safe-area-inset-left));box-shadow:0 2px 6px rgba(0,0,0,.15)}
+nav button{flex:1;border:0;border-radius:10px;padding:11px 4px;font-family:inherit;font-weight:700;font-size:14px;background:rgba(255,255,255,.13);color:#fff;cursor:pointer}
+nav button.on{background:#fff;color:var(--navy)}
+main{max-width:1000px;margin:0 auto;padding:14px max(14px,env(safe-area-inset-right)) calc(50px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+section.tab{display:none}
+section.tab.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 0 14px}
+h2{font-size:20px;margin:4px 0 10px}
+h3{font-size:17px;margin:0 0 6px}
+p{margin:0 0 10px}
+ul,ol{margin:0 0 8px;padding-left:22px}
+li{margin:0 0 5px}
+.lead{font-size:17px}
+.grid{display:grid;gap:14px}
+@media(min-width:740px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:1fr 1fr 1fr}}
+.diagram{margin:10px 0 0}
+.diagram svg{width:100%;height:auto;display:block;border-radius:12px;-webkit-tap-highlight-color:transparent}
+.cap{min-height:3.1em;font-size:15px;margin:9px 2px 8px}
+.cap b{color:var(--red)}
+.ctrl{display:flex;gap:8px}
+.ctrl button{flex:1;padding:11px 4px;border-radius:11px;border:1px solid var(--line);background:#fff;font-family:inherit;font-weight:700;font-size:15px;color:var(--ink);cursor:pointer}
+.ctrl button.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ctrl button:disabled{opacity:.35}
+.ctrl button.sm{flex:0 0 54px}
+.trip{display:inline-block;background:#e7ecf7;color:var(--navy);font-weight:800;font-size:13px;border-radius:6px;padding:1px 7px;margin-right:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);margin:8px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{display:inline-flex;width:22px;height:22px;border-radius:50%;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px}
+.role{display:flex;gap:12px;align-items:flex-start}
+.role .dot{flex:0 0 34px;width:34px;height:34px;font-size:15px}
+.rule-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:8px;flex:0 0 28px}
+.rule-h{display:flex;align-items:center}
+.callout{background:#fff6e0;border:1px solid #f1d58a;border-radius:12px;padding:10px 12px;margin:10px 0 0;font-size:15px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;-webkit-overflow-scrolling:touch}
+.chips button{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;font-family:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.chips button.on{background:var(--red);border-color:var(--red);color:#fff}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--navy);background:#e7ecf7;border-radius:6px;padding:2px 7px;margin-right:6px}
+.timer{position:sticky;top:64px;z-index:5}
+.clock{font-size:40px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.nowline{font-size:15px;color:var(--muted);margin:6px 0 10px}
+.bar{height:8px;background:#ece6d8;border-radius:6px;overflow:hidden;margin:0 0 12px}
+.bar i{display:block;height:100%;width:0;background:var(--red)}
+.block{display:flex;gap:12px;align-items:flex-start}
+.block .time{flex:0 0 58px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--navy)}
+.block .time small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+.block .body{flex:1}
+.check{flex:0 0 34px;width:34px;height:34px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:18px;color:transparent;cursor:pointer}
+.card.done{opacity:.5}
+.card.done .check{background:#2e7d32;border-color:#2e7d32;color:#fff}
+.card.now{border:2px solid var(--red);box-shadow:0 0 0 4px rgba(198,40,40,.12)}
+.link{background:none;border:0;padding:0;color:var(--red);font-family:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.muted{color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Motion Offense Playbook</h1>
+  <p id="sub">7th grade girls · 4-out 1-in motion</p>
+</header>
+<nav>
+  <button data-tab="offense" class="on">Offense</button>
+  <button data-tab="plays">Plays</button>
+  <button data-tab="drills">Drills</button>
+  <button data-tab="practice">Practice</button>
+</nav>
+<main>
+
+<!-- ============ OFFENSE ============ -->
+<section class="tab on" id="tab-offense">
+  <div class="card">
+    <h2>The decision: 4-out 1-in motion</h2>
+    <p class="lead">You get the spacing and cutting of 5-out, and your tall, tough post stays on the block where she helps most. When she subs out, <b>the same rules become 5-out</b>. There's nothing new to teach.</p>
+    <div class="diagram" data-static="spots"></div>
+    <div class="legend" data-legend></div>
+  </div>
+
+  <h2>Roles</h2>
+  <div class="grid three">
+    <div class="card role"><span class="dot" style="background:var(--red)">P</span><div><h3>Post (tall, tough)</h3><p>Lives on the ball-side block. She seals, catches, chins the ball, drop-steps and crashes every shot. No perimeter work for now.</p></div></div>
+    <div class="card role"><span class="dot" style="background:var(--gold);color:#222">1</span><div><h3>Skilled athlete</h3><p>Starts at the top and does most of the driving. She also flashes to the high post. Driving gaps in motion builds her handle.</p></div></div>
+    <div class="card role"><span class="dot" style="background:#2b4fa8">2</span><div><h3>Fast guards</h3><p>Play the wings and corners. They score on backdoor cuts and drive-and-kick. Soccer players already get give-and-go.</p></div></div>
+  </div>
+
+  <h2>The 5 rules</h2>
+  <p class="muted">Tap <b>Next</b> or tap the court to step through each one.</p>
+  <div class="grid two">
+    <div class="card"><div class="rule-h"><span class="rule-n">1</span><h3>Pass and cut</h3></div><p>After you pass, basket-cut hard to the rim with your hand up.</p><div class="diagram" data-play="r1"></div></div>
+    <div class="card"><div class="rule-h"><span class="rule-n">2</span><h3>Fill the hole</h3></div><p>If the cutter isn't open, she clears to the open spot. Everyone rotates. The top is never empty.</p><div class="diagram" data-play="r2"></div></div>
+    <div class="card"><div class="rule-h"><span class="rule-n">3</span><h3>Dribble at you = backdoor</h3></div><p>If a teammate dribbles toward you, cut backdoor to the basket.</p><div class="diagram" data-play="r3"></div></div>
+    <div class="card"><div class="rule-h"><span class="rule-n">4</span><h3>Overplayed = backdoor</h3></div><p>If your defender denies the pass, step out, plant and cut to the rim.</p><div class="diagram" data-play="r4"></div></div>
+    <div class="card"><div class="rule-h"><span class="rule-n">5</span><h3>Post follows the ball</h3></div><p>P stays on the ball side. When the ball changes sides, she cuts low, block to block. She crashes every shot.</p><div class="diagram" data-play="r5"></div></div>
+    <div class="card"><h3>Team constraint</h3><p><b>Three passes before a jump shot.</b> A layup is always OK.</p>
+      <div class="callout"><b>Against a zone:</b> Use the same spots and rules, but cut into the gaps instead of to the rim. P moves to the short corner behind the zone. A skip pass from one wing to the other is usually open. See <button class="link" data-goplay="zone">the zone play →</button></div>
+      <div class="callout"><b>Two lineups, same rules.</b> <i>Big</i> (P + 1 + 3 guards) runs 4-out 1-in. <i>Small</i> (1 + 4 fast guards) runs 5-out and pairs well with your half-court trap.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Game day notes</h2>
+    <ul>
+      <li>In the first week, praise good cuts and spacing even when the pass doesn't get there.</li>
+      <li>Call <b>"Post!"</b> for a set that gets P a touch with the side cleared out. It's on the Plays tab.</li>
+      <li>Track backdoor layups and post touches each game. Those numbers show whether the offense is working.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PLAYS ============ -->
+<section class="tab" id="tab-plays">
+  <div class="chips" id="playChips"></div>
+  <div class="card">
+    <h2 id="playTitle"></h2>
+    <p class="muted" id="playWhen"></p>
+    <div class="diagram" id="playHost"></div>
+    <div class="legend" data-legend></div>
+  </div>
+</section>
+
+<!-- ============ DRILLS ============ -->
+<section class="tab" id="tab-drills">
+  <p class="muted">The drills are listed in practice order. Each one builds toward the full offense.</p>
+
+  <div class="card" id="d-warmup"><span class="tag">0:00 · 10 min</span><h3>Dynamic warm-up and form shooting</h3>
+    <ul><li>Players go baseline to baseline with jogging, high knees, carioca and defensive slides.</li><li>In pairs, players take one-hand form shots close to the rim and step back as they make them.</li><li><b>P shoots only from the blocks, off the glass.</b></li></ul></div>
+
+  <div class="card" id="d-handling"><span class="tag">0:10 · 10 min</span><h3>Ball handling, jump stops and pivots</h3>
+    <ul><li><b>Two-ball stationary dribbling (3 min):</b> pound, alternate and low-high. Pair your skilled girl with a guard.</li><li><b>Full-court change of direction (4 min):</b> cross over or go between the legs at each cone, then finish with a layup.</li><li><b>Jump stop and pivot (3 min):</b> sprint, catch a self-toss, jump-stop, then front-pivot and reverse-pivot.</li></ul>
+    <div class="callout">Motion breaks down when kids travel or bunch up after the catch. Every catch should be a jump stop, facing the basket.</div></div>
+
+  <div class="grid two">
+    <div class="card" id="d-passcut"><span class="tag">0:20 · 4 min</span><h3>2v0 pass and cut</h3><p>The top player passes to the wing and basket-cuts. The wing hits her for a layup. Switch lines.</p><div class="diagram" data-play="dPassCut"></div></div>
+    <div class="card" id="d-backdoor"><span class="tag">0:24 · 4 min</span><h3>2v0 dribble-at backdoor</h3><p>The top player dribbles at the wing. The wing plants her outside foot, cuts backdoor and gets a bounce pass.</p><div class="diagram" data-play="dBackdoor"></div></div>
+  </div>
+  <div class="card" id="d-threeman"><span class="tag">0:28 · 4 min</span><h3>3v0 pass, cut and fill</h3><p>This is the heart of the offense. Top and two wings: pass, cut, clear to the open spot, fill the top. Go nonstop for 5 passes, then a layup.</p><div class="diagram" data-play="dThree"></div></div>
+
+  <h2>Split stations (0:32 · 10 min, swap at 5)</h2>
+  <div class="grid two">
+    <div class="card" id="d-post"><span class="tag">Post station</span><h3>Seal, catch, drop step</h3><p>P, the skilled girl and one more player. Teach two moves only: <b>drop step to a power layup</b> and <b>drop step to the middle for a jump hook</b>.</p><div class="diagram" data-play="dPost"></div></div>
+    <div class="card" id="d-lowcut"><span class="tag">Post station</span><h3>Low cut, block to block</h3><p>When the ball swings, P cuts under the basket and seals on the new side. Then add the skilled girl flashing to the high post, where she faces up and drives or hits P.</p><div class="diagram" data-play="dLowCut"></div></div>
+    <div class="card" id="d-deny"><span class="tag">Guard station</span><h3>1v1 deny to backdoor</h3><p>The defender denies the wing. The wing steps out, plants and cuts backdoor for a bounce pass from the coach.</p><div class="diagram" data-play="dDeny"></div></div>
+    <div class="card" id="d-closeout"><span class="tag">Guard station</span><h3>Closeout 1v1</h3><p>The coach passes to a wing while her defender closes out. She attacks with two dribbles max and finishes at the rim. Tell the soccer players it's like beating a defender into space.</p></div>
+  </div>
+
+  <div class="card" id="d-shell5"><span class="tag">0:42 · 13 min</span><h3>Shell 5v0: install the rules</h3>
+    <ul><li><b>3 min:</b> Rules 1 and 2 only. Freeze the drill and fix the spacing (about 15 ft apart).</li><li><b>3 min:</b> Add Rule 5. P cuts low every time the ball changes sides.</li><li><b>3 min:</b> Add Rules 3 and 4. Coach calls "Dribble at!" or "Deny!" to trigger them.</li><li><b>4 min:</b> Full speed, 5 passes then attack. Then pull P, sub in a guard, and run <b>5-out</b>.</li></ul>
+    <div class="diagram" data-play="motion"></div></div>
+
+  <div class="card" id="d-shell53"><span class="tag">1:00 · 13 min</span><h3>Shell 5v3 (advantage)</h3>
+    <ul><li>Five on offense, three defenders playing man and denying the passing lanes. The denial sets up backdoors.</li><li><b>Scoring:</b> any basket is 1 point. A backdoor layup or post score is 2 points.</li><li>Rotate three players onto offense each turn. <b>P always plays post on offense</b> and defends the post when she isn't on offense.</li><li>Freeze the drill when a player stands after passing, two players share a spot, or P drifts away from the ball.</li></ul>
+    <div class="diagram" data-static="dShell"></div></div>
+
+  <div class="card" id="d-scrim"><span class="tag">1:13 · 14 min</span><h3>4v4 constraint scrimmage</h3>
+    <ul><li><b>Rounds 1–2 (6 min):</b> 4-out, no post. Three passes before any shot. A dribble-at must produce a backdoor cut.</li><li><b>Rounds 3–4 (8 min):</b> P plays the block for one team and the skilled girl for the other. Winners stay on, and losers run a sprint.</li><li>If there's time: <b>2 minutes of your 3-2 zone</b> on defense so the offense sees motion against a zone.</li></ul>
+    <div class="diagram" data-static="d4v4"></div></div>
+</section>
+
+<!-- ============ PRACTICE ============ -->
+<section class="tab" id="tab-practice">
+  <div class="card timer">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px">
+      <div><div class="muted">Practice clock</div><div class="clock" id="clock">0:00</div></div>
+      <div class="muted" style="text-align:right" id="total"></div>
+    </div>
+    <div class="nowline" id="nowline">Tap Start when practice begins.</div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="ctrl"><button class="pri" id="tStart">Start</button><button id="tReset">Reset</button></div>
+  </div>
+  <div id="blocks"></div>
+  <div class="card" id="others"><h3>Other practices</h3><div id="plist" class="muted"></div></div>
+</section>
+
+</main>
+
+<script>
+/* ---------- Court geometry ---------- */
+const S={TOP:[250,300],RW:[415,195],LW:[85,195],RC:[455,35],LC:[45,35],RB:[350,118],LB:[150,118],RIM:[250,84],HP:[250,190],RSC:[388,58],LSC:[112,58]};
+const pt=v=>typeof v==='string'?S[v].slice():v.slice();
+const NS='http://www.w3.org/2000/svg';
+const COURT=`
+<rect x="0" y="0" width="500" height="370" fill="#ecd2a6"/>
+<rect x="170" y="0" width="160" height="190" fill="#d9a56b" stroke="#fff" stroke-width="3"/>
+<circle cx="250" cy="190" r="60" fill="none" stroke="#fff" stroke-width="3"/>
+<path d="M55 0 L55 80 A197 197 0 0 0 445 80 L445 0" fill="none" stroke="#fff" stroke-width="3"/>
+<rect x="330" y="100" width="9" height="10" fill="#fff"/><rect x="161" y="100" width="9" height="10" fill="#fff"/>
+<line x1="220" y1="38" x2="280" y2="38" stroke="#555" stroke-width="5"/>
+<circle cx="250" cy="52" r="8" fill="none" stroke="#e65100" stroke-width="3"/>
+<rect x="1.5" y="1.5" width="497" height="367" fill="none" stroke="#fff" stroke-width="3"/>`;
+const COLORS={1:['#e0a100','#222'],P:['#c62828','#fff'],C:['#6b6b6b','#fff']};
+function tokenColors(id){if(id[0]==='x')return['#fff','#555'];return COLORS[id]||['#2b4fa8','#fff'];}
+function label(id){return id[0]==='x'?'X':id;}
+
+/* ---------- Plays data ---------- */
+const BASE={1:'TOP',2:'RW',3:'LW',4:'LC',P:'RB'};
+const BD=[[400,130],[288,74]]; // backdoor path from right wing
+const PLAYS={
+ spots:{start:BASE,ball:'1',ghosts:['RC','LB'],labels:[['TOP','Top',0,34],['RW','Wing',0,34],['LW','Wing',0,34],['LC','Corner',22,34],['RC','Corner',-22,34],['RB','Block',0,34],['LB','Block',0,34]],intro:'P on the ball-side block. The four others fill the top, both wings and a corner.'},
+ r1:{start:BASE,ball:'1',intro:'1 has the ball at the top.',steps:[
+   {pass:'2',mv:{1:['RIM']},t:'1 passes, then cuts hard to the rim with her hand up.'},
+   {pass:'1',t:'If she beats her defender, 2 hits her for the layup.'}]},
+ r2:{start:BASE,ball:'1',intro:'Same start. Watch the rotation.',steps:[
+   {pass:'2',mv:{1:['RIM']},t:'1 passes and cuts.'},
+   {mv:{1:[[150,62],'LC'],4:['LW'],3:['TOP']},t:'Not open, so 1 clears to the open corner. 4 lifts to the wing and 3 fills the top.'}]},
+ r3:{start:{1:'TOP',2:'RW',3:'LW',4:'LC',P:'LB'},ball:'1',intro:'1 is going to dribble at 2.',steps:[
+   {mv:{1:[[340,245]],2:BD},t:'1 dribbles at 2, so 2 plants and cuts backdoor.'},
+   {pass:'2',t:'Bounce pass for the layup.'}]},
+ r4:{start:{1:'TOP',2:'RW',3:'LW',4:'LC',P:'LB',x2:[385,218]},ball:'1',intro:'2’s defender (X) is in the passing lane.',steps:[
+   {mv:{2:[[440,245]],x2:[[408,245]]},t:'2 steps out to sell it. The defender follows and keeps denying.'},
+   {mv:{2:[[405,140],[290,74]],x2:[[372,160]]},t:'2 plants and cuts backdoor behind her defender.'},
+   {pass:'2',t:'Bounce pass, layup.'}]},
+ r5:{start:BASE,ball:'2',intro:'Ball on the right wing, P sealing the right block.',steps:[
+   {pass:'1',t:'Ball to the top. P holds her spot, ready to move.'},
+   {pass:'3',mv:{P:[[250,130],'LB']},t:'The ball changes sides, so P cuts low, block to block, and seals.'},
+   {pass:'P',t:'The wing feeds the post. On every shot, P crashes the boards.'}]},
+
+ motion:{name:'Base Motion',when:'Your everyday offense with P on the floor. It shows all five rules in one possession.',start:BASE,ball:'1',intro:'Set: 1 at the top, 2 and 3 on the wings, 4 in the weak-side corner, P on the ball-side block. Tap Next.',steps:[
+   {pass:'2',mv:{1:['RIM']},t:'Rule 1: 1 passes to the wing and basket-cuts, hand up.'},
+   {mv:{1:[[140,58],'LC'],4:['LW'],3:['TOP']},t:'Rule 2: Not open, so 1 clears to the weak corner. 4 lifts to the wing and 3 fills the top.'},
+   {pass:'3',t:'2 swings the ball back to the top.'},
+   {pass:'4',mv:{3:['RIM'],P:[[250,132],'LB']},t:'3 passes left and cuts. Rule 5: the ball changed sides, so P cuts low to the new block.'},
+   {mv:{3:[[335,72],'RW'],2:['TOP']},t:'3 clears to the open wing and 2 fills the top. The spacing is back.'},
+   {pass:'P',t:'4 feeds the post. P catches and chins the ball.'},
+   {mv:{P:[[135,72],[218,62]]},t:'P drop-steps baseline and finishes with a power layup. Everyone else crashes or gets back.'}]},
+ backdoor:{name:'Dribble-At Backdoor',when:'When the defense is sitting on the wing. It’s your best way to get the fast guards layups.',start:{1:'TOP',2:'RW',3:'LW',4:'LC',P:'LB'},ball:'1',intro:'1 has the ball up top. 2 is on the right wing and P is on the weak-side block.',steps:[
+   {mv:{1:[[340,245]],2:BD,3:['TOP']},t:'Rule 3: 1 dribbles at 2, and 2 cuts backdoor. 3 fills the top behind the dribble.'},
+   {pass:'2',t:'Bounce pass to 2 for the layup.'},
+   {mv:{P:[[205,88]]},t:'P crashes from the weak side for the rebound.'}]},
+ post:{name:'“Post!” Quick Hitter',when:'Call it out of a timeout or when you need a basket. It clears the right side so P gets a touch.',start:BASE,ball:'1',intro:'On the “Post!” call, 1 brings the ball toward the right side.',steps:[
+   {mv:{1:[[340,245]],2:BD,3:['TOP']},t:'1 dribbles at 2, and 2 cuts backdoor. If she’s open, hit her for a layup.'},
+   {mv:{2:[[200,92],'LW']},t:'Not open, so 2 runs through to the left wing. The right side is now empty for P.'},
+   {mv:{P:[[368,142]]},pass:'P',order:'mf',t:'P seals her defender toward the lane with her target hand up. 1 passes her the ball.'},
+   {mv:{P:[[350,72],[278,62]]},t:'P drop-steps baseline, takes one power dribble and finishes off the glass.'}]},
+ fiveout:{name:'5-Out (P on bench)',when:'Your small, fast lineup. The rules are the same, and there are 5 open spots.',start:{1:'TOP',2:'RW',3:'LW',4:'RC',5:'LC'},ball:'1',ghosts:[],intro:'Five spots: the top, two wings and two corners. The lane is wide open.',steps:[
+   {pass:'2',mv:{1:['RIM']},t:'1 passes to the wing and basket-cuts.'},
+   {mv:{1:[[140,62],'LC'],5:['LW'],3:['TOP']},t:'1 clears to the left corner. 5 lifts to the wing and 3 fills the top.'},
+   {pass:'3',t:'2 swings the ball back to the top.'},
+   {pass:'5',mv:{3:['RIM']},t:'3 passes left and cuts.'},
+   {mv:{3:[[340,72],'RW'],2:['TOP']},t:'3 clears to the right wing and 2 fills the top.'},
+   {mv:{5:[[62,112]],1:[[120,48],[218,72]]},t:'Rule 3 again: 5 dribbles at 1 in the corner, and 1 cuts baseline to the rim.'},
+   {pass:'1',t:'Bounce pass for the layup.'}]},
+ zone:{name:'vs 3-2 Zone',when:'Against a zone, use the same spots and rules, but cut into the gaps.',start:{1:'TOP',2:'RW',3:'LW',4:'LC',P:'RSC',xa:[250,240],xb:[150,188],xc:[350,188],xd:[190,95],xe:[310,95]},ball:'1',intro:'The defense is in a 3-2 zone. P starts in the short corner, behind the zone.',steps:[
+   {pass:'2',mv:{xc:[[388,168]],xa:[[305,232]],xe:[[358,90]],xd:[[262,100]],xb:[[195,212]]},t:'The ball goes to the wing, and the zone slides toward it.'},
+   {mv:{1:[[250,168]]},t:'Cut to the gap, not the rim. 1 sits in the open middle of the zone. P stays behind it in the short corner.'},
+   {pass:'3',mv:{xb:[[112,178]],xa:[[215,232]],xd:[[158,100]],xc:[[330,192]],xe:[[300,95]]},t:'Skip pass over the top, wing to wing. The zone has to run to catch up, so 3 shoots or attacks the gap.'}]},
+
+ dPassCut:{start:{1:'TOP',2:'RW'},ball:'1',intro:'Two lines: one at the top, one on the wing.',steps:[
+   {pass:'2',mv:{1:[[268,84]]},t:'Pass to the wing, then cut hard to the rim with your hand up.'},
+   {pass:'1',t:'The wing hits the cutter for a layup. Switch lines.'}]},
+ dBackdoor:{start:{1:'TOP',2:'RW'},ball:'1',intro:'The top player dribbles at the wing.',steps:[
+   {mv:{1:[[340,245]],2:BD},t:'The wing plants her outside foot and cuts backdoor.'},
+   {pass:'2',t:'Bounce pass for the layup.'}]},
+ dThree:{start:{1:'TOP',2:'RW',3:'LW'},ball:'1',intro:'Three players: the top and both wings.',steps:[
+   {pass:'2',mv:{1:['RIM']},t:'1 passes to the wing and basket-cuts.'},
+   {mv:{1:[[150,70],'LW'],3:['TOP']},t:'1 clears to the left wing, and 3 fills the top.'},
+   {pass:'3',t:'The ball goes back to the top.'},
+   {pass:'1',mv:{3:['RIM']},t:'3 passes left and cuts.'},
+   {mv:{3:[[340,72],'RW'],2:['TOP']},t:'3 clears right and 2 fills the top. Keep going for 5 passes, then a layup.'}]},
+ dPost:{start:{P:'RB',2:'RW'},ball:'2',intro:'P on the block, a feeder on the wing.',steps:[
+   {mv:{P:[[360,126]]},t:'P seals with a wide base and shows a target hand.'},
+   {pass:'P',t:'The wing feeds the post. P catches and chins the ball.'},
+   {mv:{P:[[352,72],[278,62]]},t:'Drop step baseline, one power dribble, finish off the glass.'}]},
+ dLowCut:{start:{P:'RB',2:'RW',3:'LW',C:'TOP'},ball:'2',intro:'The coach (C) stands at the top with a passer on each wing.',steps:[
+   {pass:'C',t:'The wing passes to the coach. P holds her spot.'},
+   {pass:'3',mv:{P:[[250,130],'LB']},t:'The ball swings to the other wing, so P cuts low and seals the new side.'},
+   {pass:'P',t:'Feed the post. Repeat in both directions.'}]},
+ dDeny:{start:{C:'TOP',2:'RW',x2:[385,218]},ball:'C',intro:'The coach (C) has the ball. The defender denies the wing.',steps:[
+   {mv:{2:[[440,245]],x2:[[408,245]]},t:'The wing steps out to sell it.'},
+   {mv:{2:[[405,140],[290,74]],x2:[[372,160]]},t:'She plants and cuts backdoor.'},
+   {pass:'2',t:'Bounce pass for the layup. Switch roles.'}]},
+ dShell:{start:{1:'TOP',2:'RW',3:'LW',4:'LC',P:'RB',x1:[250,262],x2:[385,214],x3:[318,132]},ball:'1',intro:'Five on offense against three defenders. Rotate three new players onto offense each turn. P always plays post.'},
+ d4v4:{start:{1:'TOP',2:'RW',3:'LW',4:'LC',x1:[250,262],x2:[385,214],x3:[118,214],x4:[80,92]},ball:'1',intro:'4v4 half-court. Three passes before any shot.'}
+};
+
+/* ---------- Continuous motion (no shot) ---------- */
+function continuous(trips){
+  const M={TOP:'1',RW:'2',LW:'3',LC:'4'};let pSide='R';const steps=[];
+  for(let t=1;t<=trips;t++){
+    const tag=`<span class="trip">Trip ${t} of ${trips}</span> `;
+    let a=M.TOP,b=M.RW,c=M.LW,d=M.LC;
+    const mv={[a]:['RIM']};let txt=`${a} passes to the right wing and basket-cuts.`;
+    if(pSide==='L'){mv.P=[[250,132],'RB'];pSide='R';txt+=' The ball changed sides, so P cuts low to the right block.';}
+    steps.push({pass:b,mv,t:tag+txt});
+    steps.push({mv:{[a]:[[140,58],'LC'],[d]:['LW'],[c]:['TOP']},t:tag+`No shot, so keep going. ${a} clears to the weak corner, ${d} lifts to the wing and ${c} fills the top.`});
+    M.TOP=c;M.LW=d;M.LC=a;
+    steps.push({pass:c,t:tag+`${b} swings the ball back to the top.`});
+    a=M.TOP;b=M.RW;c=M.LW;d=M.LC;
+    steps.push({pass:c,mv:{[a]:['RIM'],P:[[250,132],'LB']},t:tag+`${a} passes to the left wing and cuts. The ball changed sides, so P cuts low to the left block.`});
+    pSide='L';
+    steps.push({mv:{[a]:[[335,72],'RW'],[b]:['TOP']},t:tag+`Still no shot. ${a} clears to the open right wing and ${b} fills the top.`});
+    M.TOP=b;M.RW=a;
+    steps.push({pass:b,t:tag+`${c} swings the ball back to the top. That's one full trip.`});
+  }
+  steps.push({t:`<span class="trip">Done</span> That's 5 trips with no shot. Every guard has played the top, both wings and the corner. Keep running it until a layup or a good shot opens up.`});
+  return steps;
+}
+PLAYS.continuous={name:'Continuous Motion (5 trips)',when:'If the shot isn’t there, keep running the offense. This is five full trips around the floor with no shot, so the team sees where each player goes next. Tap Play and watch. Use the 1x button to speed it up.',start:BASE,ball:'1',intro:'Starting shape: 1 at the top, 2 and 3 on the wings, 4 in the weak corner, P on the ball-side block. Tap Play to watch all 5 trips.',steps:continuous(5)};
+
+/* ---------- Engine ---------- */
+function initState(p){const pos={};for(const k in p.start)pos[k]=pt(p.start[k]);return{pos,ball:p.ball||null};}
+function clone(s){const pos={};for(const k in s.pos)pos[k]=s.pos[k].slice();return{pos,ball:s.ball};}
+function plan(state,step){
+  const next=clone(state),phases=[],arrows=[];
+  const doPass=()=>{if(!step.pass)return;const a=next.pos[next.ball].slice(),b=next.pos[step.pass].slice();phases.push({type:'pass',a,b});arrows.push({t:'pass',pts:[a,b]});next.ball=step.pass;};
+  const doMove=()=>{if(!step.mv)return;const moves=[];for(const id in step.mv){let v=step.mv[id];let list=(typeof v==='string'||typeof v[0]==='number')?[v]:v;const path=[next.pos[id].slice(),...list.map(pt)];moves.push({id,path});arrows.push({t:id[0]==='x'?'def':(next.ball===id?'drib':'cut'),pts:path});next.pos[id]=path[path.length-1].slice();}phases.push({type:'move',moves});};
+  if(step.order==='mf'){doMove();doPass();}else{doPass();doMove();}
+  return{phases,arrows,next};
+}
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function plen(p){let L=0;for(let i=1;i<p.length;i++)L+=Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]);return L;}
+function along(p,t){const L=plen(p)*t;let d=0;for(let i=1;i<p.length;i++){const s=Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]);if(d+s>=L||i===p.length-1){const u=s?Math.min(1,(L-d)/s):1;return[p[i-1][0]+(p[i][0]-p[i-1][0])*u,p[i-1][1]+(p[i][1]-p[i-1][1])*u];}d+=s;}return p[p.length-1];}
+function shorten(p,s0,s1){p=p.map(q=>q.slice());const cut=(a,b,s)=>{const d=Math.hypot(b[0]-a[0],b[1]-a[1]);if(d<s+4)return a.slice();return[a[0]+(b[0]-a[0])*s/d,a[1]+(b[1]-a[1])*s/d];};p[0]=cut(p[0],p[1],s0);const n=p.length-1;p[n]=cut(p[n],p[n-1],s1);return p;}
+function zig(p){const out=[p[0]];for(let i=1;i<p.length;i++){const a=p[i-1],b=p[i];const d=Math.hypot(b[0]-a[0],b[1]-a[1]);const ux=(b[0]-a[0])/d,uy=(b[1]-a[1])/d;const last=i===p.length-1;const end=last?d-14:d;let s=8,k=0;while(s<end){const o=(k%2?-6:6);out.push([a[0]+ux*s-uy*o,a[1]+uy*s+ux*o]);s+=9;k++;}out.push(b);}return out;}
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function tween(ms,fn){return new Promise(r=>{const t0=performance.now();const f=now=>{const t=Math.min(1,(now-t0)/ms);fn(ease(t));t<1?requestAnimationFrame(f):r();};requestAnimationFrame(f);});}
+
+function buildDiagram(host,key,opts={}){
+  const play=PLAYS[key];const steps=play.steps||[];
+  host.innerHTML='';
+  const svg=el('svg',{viewBox:'0 0 500 370',role:'img','aria-label':play.name||'Court diagram'},host);
+  svg.innerHTML=COURT;
+  const gGhost=el('g',{},svg),gArr=el('g',{},svg),gLab=el('g',{},svg),gPl=el('g',{},svg);
+  (play.ghosts||[]).forEach(s=>{const p=S[s];el('circle',{cx:p[0],cy:p[1],r:17,fill:'none',stroke:'#7a5a33','stroke-width':2,'stroke-dasharray':'4 4'},gGhost);});
+  (play.labels||[]).forEach(([s,txt,dx,dy])=>{const p=S[s];const t=el('text',{x:p[0]+dx,y:p[1]+dy,'text-anchor':'middle','font-size':15,'font-weight':700,fill:'#5b3f1c'},gLab);t.textContent=txt;});
+  const tok={};
+  const st0=initState(play);
+  for(const id in st0.pos){const g=el('g',{},gPl);const[f,tc]=tokenColors(id);el('circle',{r:17,fill:f,stroke:id[0]==='x'?'#555':'#fff','stroke-width':id[0]==='x'?2.5:2.5},g);const t=el('text',{'text-anchor':'middle',dy:'0.35em','font-size':id[0]==='x'?17:16,'font-weight':800,fill:tc,'font-family':'-apple-system,Segoe UI,Roboto,sans-serif'},g);t.textContent=label(id);tok[id]=g;}
+  const ball=el('circle',{r:7.5,fill:'#f57c00',stroke:'#6d3200','stroke-width':2},gPl);
+  const setP=(id,p)=>tok[id].setAttribute('transform',`translate(${p[0]},${p[1]})`);
+  const setB=p=>{ball.setAttribute('cx',p[0]);ball.setAttribute('cy',p[1]);};
+  const bOff=p=>[p[0]+13,p[1]-13];
+  function head(p,col){const n=p.length;const a=p[n-2],b=p[n-1];const ang=Math.atan2(b[1]-a[1],b[0]-a[0]);const L=13,W=6.5;const pts=[[b[0],b[1]],[b[0]-L*Math.cos(ang)+W*Math.sin(ang),b[1]-L*Math.sin(ang)-W*Math.cos(ang)],[b[0]-L*Math.cos(ang)-W*Math.sin(ang),b[1]-L*Math.sin(ang)+W*Math.cos(ang)]];el('polygon',{points:pts.map(q=>q.join(',')).join(' '),fill:col},gArr);}
+  function drawArrows(arr){gArr.innerHTML='';arr.forEach(a=>{let p=shorten(a.pts,19,20);if(p.length<2||plen(p)<6)return;const col=a.t==='def'?'#777':'#1b1b1b';let draw=a.t==='drib'?zig(p):p;el('polyline',{points:draw.map(q=>q.join(',')).join(' '),fill:'none',stroke:col,'stroke-width':a.t==='def'?2:3,'stroke-dasharray':a.t==='pass'?'9 7':(a.t==='def'?'4 4':'none'),'stroke-linejoin':'round','stroke-linecap':'round'},gArr);head(p,col);});}
+  function render(s){for(const id in s.pos)setP(id,s.pos[id]);if(s.ball){ball.style.display='';setB(bOff(s.pos[s.ball]));}else ball.style.display='none';}
+  render(st0);
+  if(!steps.length){if(play.intro){const c=document.createElement('div');c.className='cap';c.textContent=play.intro;host.appendChild(c);}return;}
+  const cap=document.createElement('div');cap.className='cap';host.appendChild(cap);
+  const ctrl=document.createElement('div');ctrl.className='ctrl';ctrl.innerHTML='<button data-a="back">◀ Back</button><button data-a="next" class="pri">Next ▶</button><button data-a="auto">▶▶ Play</button><button data-a="reset" class="sm">↺</button><button data-a="spd" class="sm">1x</button>';host.appendChild(ctrl);
+  const btn=a=>ctrl.querySelector(`[data-a="${a}"]`);
+  let k=0,cur=clone(st0),busy=false,auto=false;
+  let speed=opts.speed||1;
+  function setCap(){if(k===0)cap.innerHTML=play.intro||'';else cap.innerHTML=`<b>${k}/${steps.length}</b> &nbsp;${steps[k-1].t}`;btn('back').disabled=k===0;btn('next').disabled=k>=steps.length;}
+  async function next(){if(busy||k>=steps.length)return false;busy=true;const{phases,arrows,next:n}=plan(cur,steps[k]);drawArrows(arrows);k++;setCap();
+    let holder=cur.ball;const pos=clone(cur).pos;
+    for(const ph of phases){
+      if(ph.type==='pass'){await tween(550/speed,t=>setB(bOff([ph.a[0]+(ph.b[0]-ph.a[0])*t,ph.a[1]+(ph.b[1]-ph.a[1])*t])));holder=steps[k-1].pass;}
+      else{const ms=Math.max(700,Math.min(1300,Math.max(...ph.moves.map(m=>plen(m.path)))*4))/speed;await tween(ms,t=>{ph.moves.forEach(m=>{const p=along(m.path,t);pos[m.id]=p;setP(m.id,p);});if(holder)setB(bOff(pos[holder]));});}
+    }
+    cur=n;render(cur);busy=false;return true;}
+  function jump(to){cur=clone(st0);let arr=[];for(let i=0;i<to;i++){const r=plan(cur,steps[i]);cur=r.next;arr=r.arrows;}k=to;render(cur);drawArrows(arr);setCap();}
+  async function runAuto(){auto=true;btn('auto').textContent='❚❚ Pause';if(k>=steps.length)jump(0);while(auto&&k<steps.length){await next();if(auto&&k<steps.length)await new Promise(r=>setTimeout(r,900/speed));}auto=false;btn('auto').textContent='▶▶ Play';}
+  ctrl.addEventListener('click',e=>{const a=e.target.closest('button')?.dataset.a;if(!a)return;if(a==='next'){auto=false;next();}if(a==='back'&&!busy){auto=false;jump(Math.max(0,k-1));}if(a==='reset'&&!busy){auto=false;jump(0);}if(a==='spd'){speed=speed>=2?1:speed+0.5;btn('spd').textContent=speed+'x';}if(a==='auto'){if(auto)auto=false;else if(!busy)runAuto();}});
+  svg.addEventListener('click',()=>{if(!busy){if(k>=steps.length)jump(0);else{auto=false;next();}}});
+  setCap();
+}
+
+/* ---------- Legend ---------- */
+const LEG=`<span><span class="dot" style="background:#e0a100;color:#222">1</span>Skilled girl</span><span><span class="dot" style="background:#c62828">P</span>Post</span><span><span class="dot" style="background:#2b4fa8">2</span>Guards</span><span><span class="dot" style="background:#fff;color:#555;border:2px solid #555">X</span>Defense</span><span><span class="dot" style="background:#f57c00;width:12px;height:12px"></span>Ball</span>
+<span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="#1b1b1b" stroke-width="3"/></svg>Cut</span><span><svg width="34" height="10"><line x1="1" y1="5" x2="33" y2="5" stroke="#1b1b1b" stroke-width="3" stroke-dasharray="7 5"/></svg>Pass</span><span><svg width="34" height="12"><polyline points="1,6 6,1 11,11 16,1 21,11 26,1 33,6" fill="none" stroke="#1b1b1b" stroke-width="2.5"/></svg>Dribble</span>`;
+document.querySelectorAll('[data-legend]').forEach(e=>e.innerHTML=LEG);
+
+/* ---------- Build diagrams ---------- */
+document.querySelectorAll('[data-play],[data-static]').forEach(h=>buildDiagram(h,h.dataset.play||h.dataset.static));
+
+/* ---------- Plays tab ---------- */
+const PLAYLIST=['motion','continuous','backdoor','post','fiveout','zone'];
+const chips=document.getElementById('playChips');
+function choosePlay(key){chips.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.k===key));document.getElementById('playTitle').textContent=PLAYS[key].name;document.getElementById('playWhen').textContent=PLAYS[key].when;buildDiagram(document.getElementById('playHost'),key);}
+PLAYLIST.forEach(k=>{const b=document.createElement('button');b.dataset.k=k;b.textContent=PLAYS[k].name;b.onclick=()=>choosePlay(k);chips.appendChild(b);});
+choosePlay('motion');
+
+/* ---------- Tabs ---------- */
+function show(t){document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id==='tab-'+t));try{localStorage.setItem('pb-tab',t);}catch(e){}window.scrollTo(0,0);}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.tab));
+document.querySelectorAll('[data-goplay]').forEach(b=>b.onclick=()=>{show('plays');choosePlay(b.dataset.goplay);});
+try{const t=localStorage.getItem('pb-tab');if(t)show(t);}catch(e){}
+
+/* ---------- Practice plan ---------- */
+const PRACTICE={"date": "2026-11-21", "title": "Install 4-out 1-in motion", "notes": "First install. Praise good cuts and spacing even when the pass doesn't get there.", "blocks": [{"min": 10, "title": "Warm-up and form shooting", "drill": "warmup", "items": ["Dynamic warm-up baseline to baseline", "Form shooting in pairs. P shoots from the blocks only."]}, {"min": 10, "title": "Ball handling, jump stops and pivots", "drill": "handling", "items": ["Two-ball stationary dribbling (3)", "Full-court change of direction (4)", "Jump stop and pivot (3)"]}, {"min": 12, "title": "Pass-and-cut progression", "drill": "passcut", "items": ["2v0 pass and cut (4)", "2v0 dribble-at backdoor (4)", "3v0 pass, cut and fill (4)"]}, {"min": 10, "title": "Split stations: post and guards", "drill": "post", "items": ["Post: seal, drop step, low cut, high-post flash", "Guards: 1v1 deny to backdoor, closeout 1v1", "Swap at 5 minutes"]}, {"min": 13, "title": "Shell 5v0: install the rules", "drill": "shell5", "items": ["Rules 1–2, then 5, then 3–4", "Full speed, then switch to 5-out"]}, {"min": 5, "title": "Water and free throws", "items": ["Each player shoots 2 free throws per basket while the others drink"]}, {"min": 13, "title": "Shell 5v3 (advantage)", "drill": "shell53", "items": ["Backdoor or post basket = 2 points", "P always plays post on offense"]}, {"min": 14, "title": "4v4 constraint scrimmage", "drill": "scrim", "items": ["4-out, three passes before a shot (6)", "P vs the skilled girl at post (8)", "Optional: 2 minutes of your 3-2 zone"]}, {"min": 3, "title": "Free throws and wrap-up", "items": ["Pressure free throw: make it and there’s no sprint", "Huddle and say the 5 rules out loud"]}]};
+const PRACTICE_LIST=[{"date": "2026-11-21", "title": "Install 4-out 1-in motion", "file": "2026-11-21.html"}];
+const BLOCKS=PRACTICE.blocks.map(b=>({min:b.min,title:b.title,d:b.drill,items:b.items||[]}));
+const TOTAL=BLOCKS.reduce((a,b)=>a+b.min,0)*60;
+(function(){const d=new Date(PRACTICE.date+'T12:00:00');const ds=d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});document.getElementById('sub').textContent=`7th grade girls · ${ds} practice: ${PRACTICE.title}`;document.getElementById('total').innerHTML=`${ds}<br>${TOTAL/60} min total`;if(PRACTICE.notes){const n=document.createElement('div');n.className='callout';n.textContent=PRACTICE.notes;document.querySelector('.timer').after(n);n.style.margin='0 0 14px';}const pl=document.getElementById('plist');pl.innerHTML=PRACTICE_LIST.map(p=>p.date===PRACTICE.date?`<div><b>${p.date} · ${p.title}</b> (this page)</div>`:`<div><a href="${p.file}">${p.date} · ${p.title}</a></div>`).join('');})();
+const fmt=s=>{s=Math.max(0,Math.floor(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+let done={};try{done=JSON.parse(localStorage.getItem('pb-done-'+PRACTICE.date)||'{}');}catch(e){}
+const bHost=document.getElementById('blocks');let cum=0;
+BLOCKS.forEach((b,i)=>{b.s=cum*60;b.e=(cum+b.min)*60;const c=document.createElement('div');c.className='card block'+(done[i]?' done':'');c.id='b'+i;
+ c.innerHTML=`<div class="time">${fmt(b.s)}<small>${b.min} min</small></div><div class="body"><h3>${b.title}</h3><ul>${b.items.map(x=>'<li>'+x+'</li>').join('')}</ul>${b.d?`<button class="link" data-d="${b.d}">See drill diagrams →</button>`:''}</div><button class="check" aria-label="Mark done">✓</button>`;
+ c.querySelector('.check').onclick=()=>{done[i]=!done[i];c.classList.toggle('done',!!done[i]);try{localStorage.setItem('pb-done-'+PRACTICE.date,JSON.stringify(done));}catch(e){}};
+ const l=c.querySelector('[data-d]');if(l)l.onclick=()=>{show('drills');setTimeout(()=>{const t=document.getElementById('d-'+b.d);if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});},30);};
+ bHost.appendChild(c);cum+=b.min;});
+let t0=null,acc=0,iv=null,wake=null;
+function elapsed(){return acc+(t0?(Date.now()-t0)/1000:0);}
+function tick(){const e=elapsed();document.getElementById('clock').textContent=fmt(e);document.getElementById('bar').style.width=Math.min(100,e/TOTAL*100)+'%';let cur=-1;BLOCKS.forEach((b,i)=>{const on=(t0||acc>0)&&e>=b.s&&e<b.e;document.getElementById('b'+i).classList.toggle('now',on);if(on)cur=i;});
+ const nl=document.getElementById('nowline');if(cur>=0){const b=BLOCKS[cur];const nx=BLOCKS[cur+1];nl.innerHTML=`<b style="color:var(--red)">Now:</b> ${b.title} · ${fmt(b.e-e)} left${nx?` · Next: ${nx.title}`:''}`;}else if(e>=TOTAL)nl.textContent='Practice complete. Great work!';else nl.textContent='Tap Start when practice begins.';}
+document.getElementById('tStart').onclick=async function(){if(t0){acc=elapsed();t0=null;clearInterval(iv);this.textContent='Resume';}else{t0=Date.now();iv=setInterval(tick,1000);this.textContent='Pause';try{if(navigator.wakeLock)wake=await navigator.wakeLock.request('screen');}catch(e){}}tick();};
+document.getElementById('tReset').onclick=()=>{t0=null;acc=0;clearInterval(iv);document.getElementById('tStart').textContent='Start';tick();};
+tick();
+</script>
+</body>
+</html>

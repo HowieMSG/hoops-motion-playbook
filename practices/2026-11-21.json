@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-21",
+  "title": "Install 4-out 1-in motion",
+  "notes": "First install. Praise good cuts and spacing even when the pass doesn't get there.",
+  "blocks": [
+    {
+      "min": 10,
+      "title": "Warm-up and form shooting",
+      "drill": "warmup",
+      "items": [
+        "Dynamic warm-up baseline to baseline",
+        "Form shooting in pairs. P shoots from the blocks only."
+      ]
+    },
+    {
+      "min": 10,
+      "title": "Ball handling, jump stops and pivots",
+      "drill": "handling",
+      "items": [
+        "Two-ball stationary dribbling (3)",
+        "Full-court change of direction (4)",
+        "Jump stop and pivot (3)"
+      ]
+    },
+    {
+      "min": 12,
+      "title": "Pass-and-cut progression",
+      "drill": "passcut",
+      "items": [
+        "2v0 pass and cut (4)",
+        "2v0 dribble-at backdoor (4)",
+        "3v0 pass, cut and fill (4)"
+      ]
+    },
+    {
+      "min": 10,
+      "title": "Split stations: post and guards",
+      "drill": "post",
+      "items": [
+        "Post: seal, drop step, low cut, high-post flash",
+        "Guards: 1v1 deny to backdoor, closeout 1v1",
+        "Swap at 5 minutes"
+      ]
+    },
+    {
+      "min": 13,
+      "title": "Shell 5v0: install the rules",
+      "drill": "shell5",
+      "items": [
+        "Rules 1–2, then 5, then 3–4",
+        "Full speed, then switch to 5-out"
+      ]
+    },
+    {
+      "min": 5,
+      "title": "Water and free throws",
+      "items": [
+        "Each player shoots 2 free throws per basket while the others drink"
+      ]
+    },
+    {
+      "min": 13,
+      "title": "Shell 5v3 (advantage)",
+      "drill": "shell53",
+      "items": [
+        "Backdoor or post basket = 2 points",
+        "P always plays post on offense"
+      ]
+    },
+    {
+      "min": 14,
+      "title": "4v4 constraint scrimmage",
+      "drill": "scrim",
+      "items": [
+        "4-out, three passes before a shot (6)",
+        "P vs the skilled girl at post (8)",
+        "Optional: 2 minutes of your 3-2 zone"
+      ]
+    },
+    {
+      "min": 3,
+      "title": "Free throws and wrap-up",
+      "items": [
+        "Pressure free throw: make it and there’s no sprint",
+        "Huddle and say the 5 rules out loud"
+      ]
+    }
+  ]
+}
